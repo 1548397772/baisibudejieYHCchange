@@ -185,14 +185,12 @@ static NSString * const TGTopicCellID = @"TGTopicNewCellID";
 
 - (void)loadNewTopics{
     [self.tableView.mj_footer endRefreshing];
-    //[self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
+    //这个值为空的参数有什么用
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     self.params = parameters;
-    
     TGNetworkTools *tools = [TGNetworkTools sharedTools];
-    //[tools.tasks makeObjectsPerformSelector:@selector(cancel)];
     [tools netrequest:GET urlString:[self requesturl:@"0"] parameters:parameters finished:^(id responseObject, NSError * error) {
-        if (error != nil) {
+        if (error != nil) {  //网络请求失败
             if (self.params != parameters) return ;
             if (error.code != NSURLErrorCancelled) { // 并非是取消任务导致的error，其他网络问题导致的error
                 [SVProgressHUD showErrorWithStatus:@"网络繁忙，请稍后再试！"];
@@ -200,6 +198,7 @@ static NSString * const TGTopicCellID = @"TGTopicNewCellID";
             [self.tableView.mj_header endRefreshing];
             return;
         }
+        //感觉这里需要清空数据呢 但是这里他没进行清空
         if (self.params != parameters) return ;
         //AFNWriteToPlist(new_topics)
         _np = responseObject[@"info"][@"np"];
@@ -218,12 +217,9 @@ static NSString * const TGTopicCellID = @"TGTopicNewCellID";
 
 - (void)loadMoreTopics{
     [self.tableView.mj_header endRefreshing];
-    //[self.manager.tasks makeObjectsPerformSelector:@selector(cancel)];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     self.params = parameters;
-    
     TGNetworkTools *tools = [TGNetworkTools sharedTools];
-    //[tools.tasks makeObjectsPerformSelector:@selector(cancel)];
     [tools request:GET urlString:[self requesturl:_np] parameters:parameters finished:^(id responseObject, NSError * error) {
         if (error != nil) {
             if (self.params != parameters) return ;
