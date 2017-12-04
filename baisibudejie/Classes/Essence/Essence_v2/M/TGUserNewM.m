@@ -10,9 +10,12 @@
 
 @implementation TGUserNewM
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
+
     return @{
              @"ID" : @"id",
              @"header" : @"header[0]",
              };
 }
+
+
 @end

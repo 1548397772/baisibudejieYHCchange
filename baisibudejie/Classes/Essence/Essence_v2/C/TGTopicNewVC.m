@@ -268,7 +268,9 @@ static NSString * const TGTopicCellID = @"TGTopicNewCellID";
                 [[NSNotificationCenter defaultCenter] postNotificationName:NavigationBarShowNotification object:nil userInfo:nil];
             }
             _contentOffsetSpeed = _contentOffsetY - scrollView.contentOffset.y;
-        }else if (fabs(scrollView.contentOffset.y) > NavMaxY && fabs(scrollView.contentOffset.y) < NavMaxY+TitleVH){
+        }                                                                                           //64   //35
+        else if (fabs(scrollView.contentOffset.y) > NavMaxY && fabs(scrollView.contentOffset.y) < NavMaxY+TitleVH)
+        {
             //TGLog(@"我要显示了^^^^^^^^^^^^^^^^^^^^ %f",scrollView.contentOffset.y);
             [[NSNotificationCenter defaultCenter] postNotificationName:NavigationBarShowNotification object:nil userInfo:nil];
         }

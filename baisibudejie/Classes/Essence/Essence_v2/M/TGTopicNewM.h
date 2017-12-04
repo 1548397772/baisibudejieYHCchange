@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class TGUserNewM;
+#import "TGUserNewM.h"
 @class TGCommentNewM;
 @interface TGTopicNewM : NSObject
 @property (nonatomic, copy) NSString *ID;

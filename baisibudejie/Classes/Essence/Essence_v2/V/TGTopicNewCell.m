@@ -7,16 +7,19 @@
 //
 
 #import "TGTopicNewCell.h"
+
 #import "TGTopicNewM.h"
 #import "TGCommentNewM.h"
-#import "TGUserNewM.h"
-#import "TGPicNewV.h"
+
+#import "TGPicNewV.h" //看大图
 #import "TGVideoNewV.h"
 #import "TGVoiceNewV.h"
+
 #import "TGTopCommentCell.h"
+
 #import <UIImageView+WebCache.h>
-#import <AVFoundation/AVFoundation.h>
-#import <MediaPlayer/MediaPlayer.h>
+//#import <AVFoundation/AVFoundation.h>
+//#import <MediaPlayer/MediaPlayer.h>
 
 @interface TGTopicNewCell()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageV;
@@ -36,9 +39,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *vip;
 
 @property (weak, nonatomic) IBOutlet UIButton *spreadBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textHeightConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *spreadViewBottomConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topCommentViewConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textHeightConstraint;//icon下面紧接这的detail文字的高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *spreadViewBottomConstraint; //使detail文字伸缩的button
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topCommentViewConstraint;   //各种评论的tableView的高度
 
 @property (nonatomic, weak) TGPicNewV *picV;
 @property (nonatomic, weak) TGVideoNewV *videoV;
@@ -144,8 +147,10 @@ static NSString *const commentID = @"TGTopCommentCellID";
     }
     
     self.spreadV.hidden = (topic.textHeight <= TextHeightConstraint);
+    
     self.textHeightConstraint.constant = self.topic.textHeight > TextHeightConstraint? TextHeightConstraint : self.topic.textHeight;
     if (!self.spreadV.hidden){
+//        NSLog(@"xxxx: %d",self.topic.isShowAllWithoutComment);
         [self.spreadBtn setTitle:topic.cellHeight > self.topic.defaultHeight ? @"收缩" : @"展开" forState:UIControlStateNormal];
         self.textHeightConstraint.constant = self.topic.isShowAllWithoutComment ?  self.topic.textHeight : topic.cellHeight > self.topic.defaultHeight ? self.topic.textHeight : TextHeightConstraint;
         self.spreadViewBottomConstraint.constant = topic.cellHeight > self.topic.defaultHeight ? 19.f : 0;
@@ -192,8 +197,6 @@ static NSString *const commentID = @"TGTopCommentCellID";
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
 }
 
 - (IBAction)more:(id)sender {
