@@ -41,12 +41,6 @@ static TGCommentNewM *lastCommentM_;
     imageView.animationRepeatCount = 0;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-}
-
 -(void)setCommentM:(TGCommentNewM *)commentM{
     _commentM = commentM;
     [self.iconImageV tg_setHeader:commentM.u.header.length>0 ? commentM.u.header : commentM.user.profile_image.length>0 ? commentM.user.profile_image : commentM.u.profile_image];
@@ -76,10 +70,7 @@ static TGCommentNewM *lastCommentM_;
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
         
         self.playerItem = [AVPlayerItem playerItemWithURL:[NSURL URLWithString:self.commentM.voiceuri]];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(playerItemDidReachEnd:)
-                                                     name:AVPlayerItemDidPlayToEndTimeNotification
-                                                   object:self.playerItem];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playerItemDidReachEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.playerItem];
         
         [commentPlayer_ replaceCurrentItemWithPlayerItem:self.playerItem];
         [commentPlayer_ play];
@@ -87,7 +78,8 @@ static TGCommentNewM *lastCommentM_;
         self.commentM.voicePlaying = YES;
         [self setBtn:lastBtn_ play:lastCommentM_.voicePlaying];
         [self setBtn:sender play:self.commentM.voicePlaying];
-    }else{
+    }
+    else{
         if(lastCommentM_.voicePlaying){
             [commentPlayer_ pause];
             self.commentM.voicePlaying = NO;
@@ -108,9 +100,16 @@ static TGCommentNewM *lastCommentM_;
     lastBtn_ = sender;
 }
 
--(void) setBtn : (UIButton *) btn play:(BOOL) isPlay{
-    !(!isPlay && [btn.imageView isAnimating]) ? : [btn.imageView stopAnimating];
-    !(isPlay && (! btn.imageView.isAnimating)) ? : [btn.imageView startAnimating];
+-(void) setBtn : (UIButton *) btn play:(BOOL) isPlay
+{
+    if (!isPlay && [btn.imageView isAnimating]) {
+        [btn.imageView stopAnimating];
+    }
+    if (isPlay && (! btn.imageView.isAnimating)) {
+        [btn.imageView startAnimating];
+    }
+//    !(!isPlay && [btn.imageView isAnimating]) ? : [btn.imageView stopAnimating];
+//    !(isPlay && (! btn.imageView.isAnimating)) ? : [btn.imageView startAnimating];
 }
 
 -(void) playerItemDidReachEnd:(AVPlayerItem *)playerItem{

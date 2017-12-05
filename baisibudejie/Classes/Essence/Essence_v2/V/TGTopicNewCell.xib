@@ -42,7 +42,7 @@
                             <action selector="more:" destination="RE9-fU-ZXh" eventType="touchUpInside" id="zrc-0s-cdA"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKa-67-eiI">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IKa-67-eiI">
                         <rect key="frame" x="10" y="50" width="318" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="WUu-6Q-MZL"/>

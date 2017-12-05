@@ -22,9 +22,9 @@
 @property (nonatomic, copy) NSString *room_role;//yyy
 @property (nonatomic, copy) NSString *room_icon;//yyy
 
-@property (nonatomic, copy) NSString *ID;
-@property (nonatomic, assign) NSInteger total_cmt_like_count;
-@property (nonatomic, copy) NSString *profile_image;
+@property (nonatomic, copy) NSString *ID;  //这个是后加的 为啥?
+@property (nonatomic, assign) NSInteger total_cmt_like_count;  //这个是后加的 为啥?
+@property (nonatomic, copy) NSString *profile_image;  //这个是后加的 为啥?
 
 //@property (nonatomic, copy) NSString *qq_uid; //yyyyy 这些是缀余的
 //@property (nonatomic, copy) NSString *weibo_uid;

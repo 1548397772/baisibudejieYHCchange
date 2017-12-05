@@ -143,14 +143,12 @@ static NSString *const commentID = @"TGTopCommentCellID";
     if (topic.top_comments.count){
         self.topCommentViewConstraint.constant = topic.commentVH;
         [self.topCmtTableV reloadData];
-        //self.topCmtLbl.attributedText = topic.attrStrM;
     }
     
     self.spreadV.hidden = (topic.textHeight <= TextHeightConstraint);
     
     self.textHeightConstraint.constant = self.topic.textHeight > TextHeightConstraint? TextHeightConstraint : self.topic.textHeight;
     if (!self.spreadV.hidden){
-//        NSLog(@"xxxx: %d",self.topic.isShowAllWithoutComment);
         [self.spreadBtn setTitle:topic.cellHeight > self.topic.defaultHeight ? @"收缩" : @"展开" forState:UIControlStateNormal];
         self.textHeightConstraint.constant = self.topic.isShowAllWithoutComment ?  self.topic.textHeight : topic.cellHeight > self.topic.defaultHeight ? self.topic.textHeight : TextHeightConstraint;
         self.spreadViewBottomConstraint.constant = topic.cellHeight > self.topic.defaultHeight ? 19.f : 0;
@@ -190,10 +188,10 @@ static NSString *const commentID = @"TGTopCommentCellID";
     }
 }
 
-- (void)setFrame:(CGRect)frame{
-    //frame.size.height += 1;//不采用背景图做为分隔,直接在cell里加一个0.5高度的view作为分隔线
-    [super setFrame:frame];
-}
+//- (void)setFrame:(CGRect)frame{
+//    //frame.size.height += 1;//不采用背景图做为分隔,直接在cell里加一个0.5高度的view作为分隔线
+//    [super setFrame:frame];
+//}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

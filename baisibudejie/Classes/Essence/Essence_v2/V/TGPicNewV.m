@@ -31,7 +31,6 @@
     self.autoresizingMask = UIViewAutoresizingNone;
     self.imageV.userInteractionEnabled = YES;
     [self.imageV addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(seeBigPic)] ];
-    
     self.progressV.roundedCorners = YES;
     self.progressV.progressLabel.textColor = [UIColor redColor];
     //self.progressV.trackTintColor = [UIColor clearColor];

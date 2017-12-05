@@ -120,17 +120,15 @@ static CGFloat const MiddleHeightConstraint = 300;
     if (_cellHeight) return _cellHeight;
     _commentVH = 0;
     _cellHeightWithoutComment = 0;
-    _cellHeight += 55;
-    
+    _cellHeight += Margin + 30 + Margin; //应该是头像上  头像(30)  头像下 这个50
     CGSize textMaxSize = CGSizeMake(ScreenW - 2 * Margin , MAXFLOAT);
-    
     _textHeight = [self.text boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14]} context:nil].size.height + 1;//+1是为了容错
-    //   [self.text sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:textMaxSize].height;
     //长文本过长导致高度过高应受到高度约束
-    _cellHeightWithoutComment = _cellHeight + _textHeight + Margin;
-    _cellHeight += (_textHeight > TextHeightConstraint ? TextHeightConstraint : _textHeight) + Margin;
+    _cellHeightWithoutComment = _cellHeight + _textHeight + Margin;  //现在已经到了文字label的下面了 并且包括下间距
     
-    if (![self.type isEqualToString: @"text"]) { //图片、视频
+    _cellHeight += (_textHeight > TextHeightConstraint ? TextHeightConstraint : _textHeight) + Margin;//如果文字的高度超过了设定的120,那么就只能显示120高度的文字
+    
+    if (![self.type isEqualToString: @"text"]) { //图片、视频    //共:audio image video gif text
         //self.image_width = 0;//测试
         CGFloat middleW = textMaxSize.width;
         CGFloat middleX = Margin;
@@ -148,8 +146,7 @@ static CGFloat const MiddleHeightConstraint = 300;
     }
     
     if (self.top_comments.count > 0){//评论
-        textMaxSize = CGSizeMake(ScreenW - 2 * Margin - 10 -30, MAXFLOAT);
-        //NSMutableAttributedString *attrStrM = [[NSMutableAttributedString alloc] init];
+        textMaxSize = CGSizeMake(ScreenW - 2 * Margin - 10 -30, MAXFLOAT); //左右各切20,左边有小icon,看似没有小icon的地,但是有小icon的地
         for (int i=0 ; i <self.top_comments.count; i++){
             TGCommentNewM * com = self.top_comments[i];
             NSString *content = com.content;
@@ -162,11 +159,8 @@ static CGFloat const MiddleHeightConstraint = 300;
             [attrStr addAttribute:NSForegroundColorAttributeName
                             value:TGColor(62, 114, 166)
                             range:NSMakeRange(0, username.length)];
-            //[attrStrM appendAttributedString:attrStr];
-            //if (i != self.top_comments.count-1){
-            //    [attrStrM appendAttributedString: [[NSAttributedString alloc] initWithString:@"\n"]];
-            //}
-            [com setValue:attrStr forKey:@"_attrStrM"];
+            
+            [com setValue:attrStr forKey:@"_attrStrM"]; ///????????
             CGSize s = [cmtText boundingRectWithSize:textMaxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12]} context:nil].size;
             CGFloat h = s.height + 5;//加5是下有5个高
             h = h<25 ? 25 : h;//最小不能低于 图像20+下有5个高
