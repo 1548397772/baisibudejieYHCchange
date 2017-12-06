@@ -268,13 +268,13 @@
                 <outlet property="spreadBtn" destination="0Cg-10-LPp" id="3Xt-xx-Las"/>
                 <outlet property="spreadV" destination="A63-l6-iew" id="cW2-Ge-LOP"/>
                 <outlet property="spreadViewBottomConstraint" destination="vqs-yN-o35" id="UcO-w5-0MZ"/>
-                <outlet property="textHeightConstraint" destination="WUu-6Q-MZL" id="wRI-jo-CCS"/>
                 <outlet property="textLbl" destination="IKa-67-eiI" id="bwF-Qm-mVO"/>
                 <outlet property="toolBarV" destination="Y9F-V7-R6c" id="gjA-Ng-WKu"/>
                 <outlet property="topCmtTableV" destination="chD-ft-j88" id="S9K-Kk-aEA"/>
                 <outlet property="topCmtV" destination="n1e-bD-1er" id="Y5s-fG-u8a"/>
                 <outlet property="topCommentViewConstraint" destination="hQB-wK-j2g" id="Xyx-EY-Nw1"/>
                 <outlet property="vip" destination="w8i-3n-GJy" id="7QO-cZ-jlY"/>
+                <outlet property="yyytextHeightConstraint" destination="WUu-6Q-MZL" id="Szu-0X-PhO"/>
             </connections>
             <point key="canvasLocation" x="43" y="232.5"/>
         </tableViewCell>
