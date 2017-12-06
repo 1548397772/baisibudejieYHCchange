@@ -39,7 +39,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *vip;
 
 @property (weak, nonatomic) IBOutlet UIButton *spreadBtn;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *textHeightConstraint;//icon下面紧接这的detail文字的高度
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *yyytextHeightConstraint;//icon下面紧接这的detail文字的高度
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *spreadViewBottomConstraint; //使detail文字伸缩的button
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topCommentViewConstraint;   //各种评论的tableView的高度
 
@@ -147,10 +147,10 @@ static NSString *const commentID = @"TGTopCommentCellID";
     
     self.spreadV.hidden = (topic.textHeight <= TextHeightConstraint);
     
-    self.textHeightConstraint.constant = self.topic.textHeight > TextHeightConstraint? TextHeightConstraint : self.topic.textHeight;
+    self.yyytextHeightConstraint.constant = self.topic.textHeight > TextHeightConstraint? TextHeightConstraint : self.topic.textHeight;
     if (!self.spreadV.hidden){
         [self.spreadBtn setTitle:topic.cellHeight > self.topic.defaultHeight ? @"收缩" : @"展开" forState:UIControlStateNormal];
-        self.textHeightConstraint.constant = self.topic.isShowAllWithoutComment ?  self.topic.textHeight : topic.cellHeight > self.topic.defaultHeight ? self.topic.textHeight : TextHeightConstraint;
+        self.yyytextHeightConstraint.constant = self.topic.isShowAllWithoutComment ?  self.topic.textHeight : topic.cellHeight > self.topic.defaultHeight ? self.topic.textHeight : TextHeightConstraint;
         self.spreadViewBottomConstraint.constant = topic.cellHeight > self.topic.defaultHeight ? 19.f : 0;
     }
     
